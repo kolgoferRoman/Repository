@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CSS learn</title>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <!--
+            p {…}                 /* по тегу */
+            .title {…}            /* по классу */ - обратить внимание
+            p.warning {…}         /* тег с классом */
+            #promo {…}            /* по id */
+            h1#chapter1 {…}       /* тег с id */
+            .title a {…}          /* тег внутри тега с классом */ - обратить внимание
+            .title .bage {…}      /* класс внутри тега с классом */
+
+            //Псевдоклассы--------------------------------------------------------------------------
+            :link
+            :hover (при наведении)
+            :active               /* Наиболее распространенные */
+            :focus (outline)      /* Реагируют на взаимодействие с пользвователем */
+            :visited
+
+            :root                                         /* селекторы уточнения */
+            :first-child (первый элемент из выбранных)
+            :last-child (только последний)
+            :nth-child() (по формуле, например: li:nth-child(2n) - каждый второй элемент списка)
+
+            :valid                                        /* селекторы поведения */
+            :invalid
+            :required (обязательное поле)
+            :optional
+            :checked
+            :disabled
+            :enabled
+
+            //Псевдоэлементы------------------------------------------------------------------------
+            - создают витруальные теги
+            - позволяют стилизовать их
+
+            ::after
+            ::before
+            ::first-letter
+            ::first-line
+
+            Например:
+            <li>                                          li::before{
+                ::before                                    content:"Иконка входа";  
+                <a href="/login">Вход</a>                 }
+            </li>
+
+            <li>                                          li::after{                                    
+                <a href="/logout">Выход</a>                 content:"Иконка выхода";
+                ::after                                   }
+            </li>
+
+            //Комбинирование стилей с помощью классов-------------------------------------------------
+            - свойство элемента можно комбинировать и явно с помощью множественных классов
+
+            Пример:
+            <h2>Мы в соцсетях</h2>
+            <a class="button button-vk">                /* свойства первого <a> */
+                Вконтакте                                   display: inline-block;
+            </a>                                            background: blue;
+            <a class="button button-fb">                /* свойства второго <a> */
+                Фуйсбук                                     display: inline-block;
+            </a>                                            background: darkblue;
+
+            .button { display: inline-block; }
+            .button-vk {background: blue; }
+            .button-fb {background: darkblue; }
+
+            //Конфликт свойств-------------------------------------------------------------------------
+            <h2>Мы в соцсетях</h2>
+            <a class="button button-vk">                /* свойства этого <a> */
+                Вконтакте                                   background: blue;
+            </a>  
+
+            .button { background: black; }
+            .button-vk {background: blue; } - он ниже в файле, поэтому он применится
+            
+            //Типы значений----------------------------------------------------------------------------
+            - Абсолютные
+            width: 100px;
+            font-size: 16px;
+
+            - Относительные
+            width: 50%;                /* От ширины родителя */
+            width: 100vw;              /* От ширины вюпорта */
+            height: 100vh;             /* От высоты вюпорта */
+            font-size: 2em;            /* От размера шрифта родителя */
+            font-size: 2rem;           /* От размера шрифта корневого элемента (html) */
+
+            - Ключевые слова
+            text-transform: uppercase;
+            text-align: center;
+            display: block;
+            color: red;
+
+            -Цвета
+            color: #f00;              /*  #f  0  0  */
+            color: #ff0000;           /*  #ff 00 00 */
+            color: rgb(255, 0, 0);
+            color: rgba(255, 0, 0, 0.5);
+            color: hsl(0, 100%, 50%);
+            color: hsla(0, 100%, 50%, 0.5);
+
+            -Функции
+            /* Получает содержимое атрибута */
+            content: attr(href);
+            content: url(../icon.svg);
+            
+            /* Любые рассчеты */
+            width: calc(100% - 100px);
+
+            /* Линейный градиент /*
+            background-image: linear-gradient(45deg, yellow, green)
+
+            -Произврольные строки
+            font-family: "Times New Roman", serif;
+            content: "Привет!";
+
+            //CSS директивы----------------------------------------------------------------------------
+            - cпециальные инструкции, которые начинаются с @
+
+            @font-face{
+                font-family: "Open Sans";
+                src:
+                    url("OpenSans-Regular.woff2") formar("woff2"),
+                    url("OpenSans-Regular.woff") formar("woff");
+            }
+
+            /* Если ширина области меньше 600px, то .sidebar спрячется */
+            @media (max-width: 600px){
+                .sidebar{
+                    display: none;
+                }
+            }
+
+            //Порядок CSS свойств-----------------------------------------------------------------------
+            .declaration-order {
+                /* Позиционирование */
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 100;
+
+                /* Блочная модель */
+                display: block;
+                float: right;
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+                padding: 10px;
+
+                /* Типографика */
+                font: normal 13px/1.5 "Arial", sans-serif;
+                font-style: normal;
+                font-size: 13px;
+                line-height: 1.5;
+                font-family: "Arial", sans-serif;
+                text-align: center;
+                color: #333333;
+
+                /* Оформление */
+                background-color: #f5f5f5;
+                border: 1px solid #e5e5e5;
+                border-radius: 3px;
+                opacity: 1:
+
+                /* Анимация */
+                transition: color 1s;
+
+                /* Разное */
+                will-change: auto;
+            }
+
+            //Описание шрифтов-------------------------------------------------------------------------
+            /* Хорошо: указан альтернативный веб-безопасный шрифт и его тип семейства */
+            body {
+                font-family: "Helvetica", "Arial", sans-serif;
+            }
+
+            /* Плохо: указан только нестандартный шрифт */
+            body {
+                font-family: "Helvetica";
+            }
+
+            //Нет сокращенной записи свойств!-----------------------------------------------------------
+            /* Bad example */
+
+            .element {
+                margin: 0 0 10px;
+                background: red;
+                background: url("image.jpg");
+                border-radius: 3px 3px 0 0;
+            }
+
+            /* Good example */
+
+            .element {
+                margin-bottom: 10px;
+                background-color: red; 
+                background-image: url("image.jpg"); 
+                border-top-left-radius: 3px; 
+                border-top-right-radius: 3px;
+            }
+
+            //Когда можно использовать глобальные стили--------------------------------------------------
+            body {
+                margin: 0;
+            }
+            img {
+                max-width: 100%;
+            }
+            a {
+                text-decoration: none;
+            }
+
+            //Подключение normalize.css
+            - сначало normalize, потом стили
+            <head>
+                <link rel="stylesheet" href="css/normalize.css">      
+                <link rel="stylesheet" href="css/style.css">
+            </head>
+
+            //Полезная информация (надо запомнить)-------------------------------------------------------
+            text-transform: uppercase;  - все буквы большие
+            background-image: url("");  - фоновая картинка
+            background-position устанавливает начальную позицию для каждого фонового изображения
+            background-repeat: no-repeat;  - фоновое изображение не будет повторятся
+            text-align: center; - центрирование текста
+            .user-navigation {
+            list-style: none; /* отключить буллиты */
+            }
+            font: 
+            color: inherit;  - включить унаследование
+
+            //-----------------------------------------------------------------------------------------------
+            Пример вставки паттерна(задний фон):
+            .maine-footer {
+                color: #ffffff;
+                background-color: #212121;
+                background-image: url("img/pattern-dark.jpg");
+                background-position: 0 0;
+                background-repeat: repeat;
+            }
+
+            //Типы боксов------------------------------------------------------------------------------------
+            Тип бокса задается свойством display.
+            - Блочные  display: block.
+                Прямоугольные области на странице.
+                По умолчанию: 
+                    <div> <section> 
+                    <h1>...<h2> <p> <ul> <ol>
+                    И другие для выдиления крупных блоков текста.
+            - Строчные  display: inline.
+                Фрагменты текста.
+                По умолчанию: 
+                    <span> <a> <strong> <em> <time>
+                    И другие для выдиления небольших текстовых фраз.
+            - Блочно-строчные  display: inline-block.
+            - Табличные  display: table.
+            - Флексы  display: flex.
+            - Гриды  display: grid.
+            - И другие.
+
+            //Свойство блочной модели-------------------------------------------------------------------------
+            Влияют на размер элемента:
+            - width
+            - height
+            - padding
+            - border 
+            - margin
+            ===============
+            Пример:
+                width - ширины содержимого       
+                width: 500px;
+                width: 50%;
+                width: auto; /* по умолчанию */
+                                                            /* content */
+                height - высота содержимого
+                height: 500px;
+                height: 50%;
+                height: auto; /* по умолчанию */
+
+                (! не задавать высоту контентным элементам)
+
+            Дополнительные свойства:
+                - min-width
+                - min-height
+                - max-width
+                - max-height
+
+            ===============
+                padding - внутренние отступы
+                padding: 10px;
+                padding: 5%;
+                padding: 2em;
+
+                - padding с разных сторон -
+                Значения через пробелы:
+                    padding: 10px; /* со всех сторон */
+                    padding: 10px 20px; /* TB LR*/ 
+                    padding: 10px 20px 30px; /* T LR B */
+                    padding: 10px 20px 30px 40px; /* T R B L */
+
+                Отельные свойства и их комбинации:
+                    padding-top: 10px;
+                    padding-right: 20px;
+                    padding-bottom: 30px;
+                    padding-left: 40px;
+
+                    padding: 20px;
+                    padding-bottom: 40px;
+            
+            ===============
+                border - рамки
+                1. Ширины рамки
+                2. Стиль рамки
+                3. Цвет рамки
+                
+                Например:
+                border: 1px solid #ff0000;
+
+                - компоненты и стороны border -
+                /* Компоненты: */                /* Комбинируем: */
+                border-wight                     border-top-width
+                border-style                     border-top-style
+                border-color                     border-top-color
+                                                 border-right-width
+                /* Стороны: */                   border-right-style
+                border-top                       border-right-color
+                border-right
+                border-bottom                    /* и так далее */
+                border-left
+
+                Примеры border:
+                .b1 {
+                    border: 5px solid balck;
+                }
+
+                .b2 {
+                    border-bottom: 5px dashed black;  /* снизу стала пунктирная рамка */
+                }
+
+                .b3 {
+                    border-wight: 5px;
+                    border-style: dotted;
+                    border-color: black;
+                }
+            
+            ===============
+            margin - внешние отступы
+            margin: 10px;
+            margin: 5%;
+            margin: 2em;
+
+                Значения через пробелы:
+                    margin: 10px; /* со всех сторон */
+                    margin: 10px 20px; /* TB LR*/ 
+                    margin: 10px 20px 30px; /* T LR B */
+                    margin: 10px 20px 30px 40px; /* T R B L */
+
+                Отельные свойства и их комбинации:
+                    margin-top: 10px;
+                    margin-right: 20px;
+                    margin-bottom: 30px;
+                    margin-left: 40px;
+
+            //Как бороться с выпаданием?-----------------------------------------------------------
+            Родительскому блоку можно задать одно из следующих свойств:
+            - owerflow: hidden;
+            - padding-top: 1px;
+            - border-top: 1px solid transparent;
+
+            //Как расположить элемент по центру?---------------------------------------------------
+            div {
+                width: 200px;  /* меньше ширины родителя */
+                margin-left: auto;
+                margin-right: auto;
+
+                /* часто пишут так */
+                margin: 0 auto;
+            }
+
+            //Свойство box-sizing------------------------------------------------------------------
+            box-sizing: content-box  /* по умолчанию */
+                width: 100% будет зависить от контента
+
+            box-sizing: border-box
+                width: 100% применяется к рамочному боксу
+
+            Способ (пример) использования:
+                *, *::before, *::after {
+                    box-sizing: inherit;
+                }
+
+                html {
+                    box-sizing: border-box;
+                }
+
+                .block {
+                    box-sizing: content-box;
+                }
+            //Флексбокс-----------------------------------------------------------------------------
+            - Включаем флексбокс -
+            <div> class="flex">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+
+            .flex {
+                display: flex;
+            }
+
+            .flex div {
+                padding: 10px;
+            }
+
+            - Главная ось - 
+            .flex {
+                display: flex;
+                flex-direction: row;  /* слева на право (по умолчанию) */
+                flex-direction: column;  /* сверху в низ */
+                flex-direction: row-reverse;  /* справа на лево */
+                flex-direction: column-reverse;  /* снизу вверх */
+            }
+
+            - Aлгоритм раскладки во флексах -
+
+            1. Определение базовых размеров
+            Базовый размер - размер элемента вдоль главной оси.
+
+            flex-basic: auto    ->     да     width: auto      ->    да       height: auto        ->    да   -> размер содержимого
+                                    (главная ось горизонатльна)        (главная ось вертикальна)
+                                       нет                           нет                                нет
+                                значение flex-basic            значение width                      значение height
+
+                                                        Базовый размер
+            2. Перераспределение свободного места
+                2.1. Изминение размеров гибких элементов
+                
+            -   flex-grow: 0  /* по умолчанию */
+                Если flex-grow больше 0, то элемент может поглотить свободное пространство и увеличится.
+                Если элементов с положительным flex-grow несколько, то они делят свободное пространство пропорционально своим flex-grow.
+
+                - не используйте flex-grow для задания точных вершин.
+                - используйте flex-grow для "резиновых" раскладок и "адаптивности без медиавыражений"
+
+            -   flex-shrink: 1  /* по умолчанию */
+                Если есть отрицательное пространство, то элемент может его поглотить и уменьшится.
+                Для этого flex-shrink должен быть больше 0.
+                Если элементов с положительным flex-shrink несколько, то они делят отрицательное пространство пропорционально своим flex-shrink и базовым размерам.
+
+                2.2. Автоматические отступы
+                margin: auto
+                - работает во всех направлениях 
+                - "сьедает" свободное место 
+                - если у нескольких элементов есть автоматические отступы, то сводобное место делится поровну.
+                - свободное место "сьедается" до работы выравниваний - выравнивания "ломаются". 
+
+                2.3. Выравнивание элементов
+                Выравнивание работает, если осталось свободное пространство, и если оно не сьедено жадными элементами и автоматическими отступами.
+
+            -   Выравнивание вдоль главной оси
+                .flex {
+                    display: flex;
+                    flex-direction: row; /* по умолчанию */
+                    justify-content: flex-start;  /* по умолчанию */
+                    justify-content: flex-end;  /* всё сдвинется вправо */
+                    justify-content: center;  /* по центру главной оси */
+                    justify-content: space-between;  /* с отстпупами между блоками */
+                    justify-content: space-around;  /* с отступами вокруг блоков */
+                }
+
+            -   Выравнивание вдоль поперечной оси
+                .flex {
+                    display: flex;
+                    flex-direction: row;  /* по умолчанию */
+                    align-items: stetch;  /* по умолчанию (растягиваются вдоль поперечной оси) */
+                    align-items: start;  /* встанут в начало поперечной оси */
+                    align-items: end;  /* поставит в конец поперечной оси */
+                    align-items: center;  /* выровнит их по центру */
+                    align-items: baseline;  /* выровнит текст по одной линии */
+
+                }
+
+                Эгоистичное выравнивание, align-self
+                .flex {
+                    display: flex;
+                    flex-direction: raw;
+                    align-items: start; 
+                }
+
+                .flex div:nth-child(2) {
+                    align-self: center; /* переписать конкретному ребеноку значение выравнивания */
+                }
+
+            3. Приминения ограничений размеров (min-widht, max-width, min-height, max-height).
+            - минимальные и максимальные значение не влияют на базовый размер.
+            - они применяются к элементам в самом конце работы механизма расчёта размеров и свободного пространства.
+            - возможны эффекты "выпадения" из потока.
+
+            //Построение сеток на флексбоксах-----------------------------------------------------------------------
+            - всегда явно задавайте размер колонок: width или flex-basis
+            - растояние между колонок можно задавать:
+                1. с помощью justify-content, если отступы одинаковые.
+                2. с помощью margin, если отступы разные.
+            - если количество колонок может изменится(карточный интерфейс), то margin предпочтительнее.
+            - следите за псевдоэлементами у флекс-контейнера.
+            - flex-grow не подходит, если нужно добится точного соответствия макету.
+
+            //Сокращенная запись flex-------------------------------------------------------------------------------
+            flex: 0 1 auto;
+
+            Сокращенное свойство, комбинация из трёх:
+            - flex-grow: 0;
+            - flex-shrink: 1;
+            - flex-basis: auto;
+
+            //Фиксированная и резиновая вёрстка---------------------------------------------------------------------
+            - резина - вёрстка с использованием процентов.
+            - фикс - вёрстка с использованием пикселей.
+
+            Пиксели или проценты для сеток?
+            - если нету явной задачи делать резину - делайте фикс
+            - если есть задача делать резину:
+                1. Определите минимальную и максимальную ширину главного контейнера.
+                2. Увеличьте сроки и стоимость работы.
+                -->
+            
+                2 15 56
+            
+
+            
+    </body>
+</html>

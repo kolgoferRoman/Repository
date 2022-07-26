@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+
+атрибут tabindex="0" - делает элемент интерактивным, 
+атрибут aria-label="text" - подпись (для скринридеров)
+
+
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Формы</title>
+    </head>
+    <body>
+        <h1>Логин</h1>
+        <form class="user" method="post" action="">
+          <p>
+            <label for="user-login">Логин</label>
+            <input id="user-login" type="text"
+                   name="login" placeholder="Логин">
+          </p>
+          <p>
+            <label for="user-password">Пароль</label>
+            <input id="user-password" type="password"
+                   name="password" placeholder="Пароль">
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" name="remember">
+              Запомните меня
+            </label>
+          </p>
+          <button type="submit">Войти</button>
+        </form>
+        <h1>Каталог</h1>
+        <form class="filter" method="get" action="">
+            <fieldset> <!--Набор полей-->
+                <legend>Производители:</legend> <!--Заголовок-->
+                <ul>
+                    <li>
+                        <input type="checkbox" name="boc" id="f-boc" checked>
+                        <label for="f-boc">
+                            Baxter of California
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Natty" id="f-Natty">
+                        <label for="f-Natty">
+                            Mr Natty
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="sua" id="f-sua" checked>
+                        <label for="f-sua">
+                            Suavecito
+                        </label>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>Группы товаров:</legend>
+                <ul>
+                    <li>
+                        <input type="radio" name="product" value="shaving" id="f-shaving">
+                        <label for="f-shaving">
+                            Бритвенные принадлежности
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="product" value="hair" id="f-hair" checked>
+                        <label for="f-hair">
+                            Средства для ухода
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="product" value="access" id="f-access">
+                        <label for="f-access">
+                            Аксессуары
+                        </label>
+                    </li>
+                </ul>
+            </fieldset>
+            <button type="submit">Показать</button>
+        </form>
+        <form action="" method="post">
+            <p>
+                <label for="date">Дата</label>
+                <input id="date" type="date" name="date" value="2017-10-08">
+            </p>
+            <p>
+                <label for="time">Время</label>
+                <input id="time" type="time" name="time" value="10:00">
+            </p>
+            <p>
+                <label for="name">Ваше имя</label>
+                <input id="name" type="text" name="name" value="" placeholder="Рома">
+            </p>
+            <p>
+                <label for="phone">Телефон</label> 
+                <input type="tel" name="phone" value="" placeholder="+380 661 10-76-97">
+            </p>
+            <button type="submit">Отправить</button>
+        </form>
+    </body>
+</html>
+
+
+
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <p>Привет, <a href="http://youtube.com" target="_blank">мир!</a></p>
+        <!--Открыть ссылку в новой вкладке-->
+        <div>
+            <input value="Стандартное значение">
+            <input placeholder="Держатель места (анг.)">
+        </div>
+        <div>
+            <textarea>
+                Большой текст
+            </textarea>
+        </div>
+        <div>
+            <audio controls>
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        <div>
+            <video controls width="300px">
+                <source src="video.mp4" >
+            </video>
+        </div>
+    </body>
+</html>
